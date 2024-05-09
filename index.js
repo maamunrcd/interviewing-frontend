@@ -18,7 +18,19 @@ function removeDuplicates(str) {
     const newString = [...set].join(" ");
     return newString;
 }
+
+function flatten(arr) {
+    return arr.reduce((acc, item) => {
+        if (Array.isArray(item)) {
+            return acc.concat(flatten(item));
+        } else {
+            acc.push(item);
+        }
+        return acc;
+    }, []);
+}
 module.exports = {
     reverse,
-    removeDuplicates
+    removeDuplicates,
+    flatten
 };

@@ -1,4 +1,4 @@
-const { reverse, removeDuplicates } = require('./index');
+const { reverse, removeDuplicates, flatten } = require('./index');
 
 describe('test all the functions', () => {
     describe("reverse", () => {
@@ -19,4 +19,31 @@ describe('test all the functions', () => {
             expect(removeDuplicates("hello hello")).not.toBe("hello hello");
         })
     })
+    describe("flatten", () => {
+        test('[1, [2, [3, 4], 5], 6] equal [1, 2, 3, 4, 5, 6] ', () => {
+            const nestedArray = [1, [2, [3, 4], 5], 6];
+            const expected = [1, 2, 3, 4, 5, 6];
+            expect(flatten(nestedArray)).toEqual(expected);
+        });
+
+        // test('[1, 2, [4, 5]] equal [1, 2, 4, 5] ', () => {
+        //     expect(flatten([1, 2, [4, 5]])).not.toBe([1, 2, [4, 5]]);
+        // });
+    })
+
+    test('should handle an empty array', () => {
+        const emptyArray = [];
+        expect(flatten(emptyArray)).toEqual([]);
+    });
+
+    test('should handle a flat array', () => {
+        const flatArray = [1, 2, 3, 4];
+        expect(flatten(flatArray)).toEqual(flatArray);
+    });
+
+    test('should handle mixed array with non-array elements', () => {
+        const mixedArray = [1, [2, 3], 4, [5, [6]], 7];
+        const expected = [1, 2, 3, 4, 5, 6, 7];
+        expect(flatten(mixedArray)).toEqual(expected);
+    });
 });
