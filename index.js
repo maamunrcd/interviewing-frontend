@@ -11,6 +11,14 @@ function reverse(str) {
     }
     return reverseString;
 }
+
+function removeDuplicates(str) {
+    let stringToArray = str.split(" ");
+    let set = new Set(stringToArray);
+    const newString = [...set].join(" ");
+    return newString;
+}
 module.exports = {
-    reverse
+    reverse,
+    removeDuplicates
 };
